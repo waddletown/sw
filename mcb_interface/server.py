@@ -27,6 +27,7 @@ def status():
     analog = a_star.read_analog()
     battery_millivolts = a_star.read_battery_millivolts()
     encoders = a_star.read_encoders()
+    print encoders
     data = {
         "buttons": buttons,
         "battery_millivolts": battery_millivolts,
