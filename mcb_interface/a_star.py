@@ -48,7 +48,7 @@ class AStar:
 
   def read_encoders(self):
     encoders = self.read_unpack(39, 4, 'hh')
-    self.write_pack(, 'B', 1) #command to clear the encoder data
+    self.write_pack(43, 'B', 1) #command to clear the encoder data
 
   def test_read8(self):
     self.read_unpack(0, 8, 'cccccccc')
