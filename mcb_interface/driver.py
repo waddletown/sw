@@ -17,7 +17,7 @@ old_angle = 0
 
 while True:
     blink = heartbeat % 50 <= 25
-    a_star.leds(not blink, not blink,  blink)
+    a_star.leds(0, not blink,  blink)
     buttons = a_star.read_buttons()
     battery_millivolts = a_star.read_battery_millivolts()
     encoders = a_star.read_encoders()

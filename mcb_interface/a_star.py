@@ -28,7 +28,7 @@ class AStar:
     self.bus.write_i2c_block_data(20, address, data_array)
     time.sleep(0.0001)
 
-  def leds(self, red, yellow, green):
+  def leds(self, yellow, red, green):
     self.write_pack(0, 'BBB', red, yellow, green)
 
   def play_notes(self, notes):
@@ -47,7 +47,8 @@ class AStar:
     return self.read_unpack(12, 12, "HHHHHH")
 
   def read_encoders(self):
-    return self.read_unpack(39, 4, 'hh')
+    encoders = self.read_unpack(39, 4, 'hh')
+    self.write_pack(, 'B', 1) #command to clear the encoder data
 
   def test_read8(self):
     self.read_unpack(0, 8, 'cccccccc')
