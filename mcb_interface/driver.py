@@ -8,7 +8,7 @@ from time import sleep
 
 while True:
     battery_millivolts = romi.read_battery_millivolts()
-    v_x, v_theta, x, y, theta = romi.read_encoders()
+    v_x, v_theta, x, y, theta = romi.read_odometry()
 
     print "Battery Voltage: " + battery_millivolts*1000 + " Volts."
     print "Vx: " + v_x + " m/s"
