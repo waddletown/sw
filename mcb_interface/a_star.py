@@ -1,4 +1,5 @@
 # Copyright Pololu Corporation.  For more information, see https://www.pololu.com/
+import sys
 import smbus
 import struct
 import time
@@ -6,6 +7,7 @@ import time
 class AStar:
   def __init__(self):
     self.bus = smbus.SMBus(1)
+    self.python_version = sys.version_info.major
 
   def read_unpack(self, address, size, format):
     # Ideally we could do this:
@@ -21,10 +23,20 @@ class AStar:
     self.bus.write_byte(20, address)
     time.sleep(0.0001)
     byte_list = [self.bus.read_byte(20) for _ in range(size)]
-    return struct.unpack(format, bytes(byte_list))
+    if self.python_version == 3:
+        # Python version 3
+        return struct.unpack(format, bytes(byte_list))
+    else:
+        # Python version 2
+        return struct.unpack(format, bytes(bytearray(byte_list)))
 
   def write_pack(self, address, format, *data):
-    data_array = list(struct.pack(format, *data))
+    if self.python_version == 3:
+        # Python version 3
+        data_array = list(struct.pack(format, *data))
+    else:
+        # Python version 2
+        data_array = [ord(char) for char in  list(struct.pack(format, *data))]
     self.bus.write_i2c_block_data(20, address, data_array)
     time.sleep(0.0001)
 
