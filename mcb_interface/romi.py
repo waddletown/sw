@@ -4,7 +4,7 @@ import smbus
 import struct
 import time
 
-class AStar:
+class Romi:
   def __init__(self):
     self.bus = smbus.SMBus(1)
     self.python_version = sys.version_info.major
@@ -41,25 +41,25 @@ class AStar:
     time.sleep(0.0001)
 
   def leds(self, red, yellow, green):
-    self.write_pack(0, 'BBB', red, yellow, green)
-
-  def play_notes(self, notes):
-    self.write_pack(24, 'B15s', 1, notes.encode("ascii"))
-
-  def motors(self, left, right):
-    self.write_pack(6, 'hh', left, right)
+    self.write_pack(0, "???", red, yellow, green)
 
   def read_buttons(self):
     return self.read_unpack(3, 3, "???")
 
+  def velocity_command(self, v_x_command, v_theta_command):
+    self.write_pack(6, 'ff', v_x_command, v_x_command)
+
+  def read_odometry(self):
+    return self.read_unpack(14, 20, 'fffff')
+
+  def reset_odometry(self):
+    self.write_pack(34, '?', True)
+
   def read_battery_millivolts(self):
-    return self.read_unpack(10, 2, "H")
+    return self.read_unpack(35, 2, "H")
 
-  def read_analog(self):
-    return self.read_unpack(12, 12, "HHHHHH")
-
-  def read_encoders(self):
-    return self.read_unpack(39, 4, 'hh')
+  def play_notes(self, notes):
+    self.write_pack(37, 'B15s', 1, notes.encode("ascii"))
 
   def test_read8(self):
     self.read_unpack(0, 8, 'cccccccc')
