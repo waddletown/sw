@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from romi import Romi
+from romi_interface.romi import Romi
 import atexit
 import time
 from math import pi, sqrt
