@@ -19,12 +19,7 @@ class Romi:
     #
     # A delay of 0.0001 (100 us) after each write is enough to account
     # for the worst-case situation in our example code.
-
-    print address
-    try:
-      self.bus.write_byte(20, address)
-    except:
-      break
+    self.bus.write_byte(20, address)
     time.sleep(0.0001)
     byte_list = [self.bus.read_byte(20) for _ in range(size)]
     if self.python_version == 3:
@@ -41,10 +36,7 @@ class Romi:
     else:
         # Python version 2
         data_array = [ord(char) for char in  list(struct.pack(format, *data))]
-    try:
-      self.bus.write_i2c_block_data(20, address, data_array)
-    except:
-      break
+    self.bus.write_i2c_block_data(20, address, data_array)
     time.sleep(0.0001)
 
   def leds(self, red, yellow, green):
