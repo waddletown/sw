@@ -9,10 +9,11 @@ from time import sleep
 while True:
     battery_millivolts = romi.read_battery_millivolts()
     v_x, v_theta, x, y, theta = romi.read_odometry()
-    romi.velocity_command(0.1, 0)
+    romi.velocity_command(1.0, 0)
 
     print "Battery Voltage: ", battery_millivolts[0], " Volts."
     print "Vx: ", v_x, " m/s"
     print "Vtheta: ", v_theta, "rad/s"
+    print "X: ", x, " Y: ", y, " Theta: ", theta
 
     sleep(0.01)
