@@ -9,6 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+catkin_python_setup()
+
 catkin_package(
 )
 
@@ -22,11 +24,10 @@ include_directories(
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
 install(PROGRAMS
-  scripts/romi_driver.py
+  nodes/romi_driver.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-catkin_python_setup()
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 install(FILES

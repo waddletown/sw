@@ -40,7 +40,7 @@ class RomiMCBDriver(object):
         self.max_vx = 0.5
         self.max_vtheta = 2*pi
 
-        rospy.init_node("romi_mcb_driver")
+        rospy.init_node("romi_driver")
         rospy.on_shutdown(self.shutdown)
 
         self.cmd_vel_sub = rospy.Subscriber("cmd_vel", Twist, self.cmd_vel_callback)

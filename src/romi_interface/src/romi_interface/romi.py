@@ -1,4 +1,4 @@
-# Copyright Pololu Corporation.  For more information, see https://www.pololu.com/
+#!/usr/bin/env python
 import sys
 import smbus
 import struct
