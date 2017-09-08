@@ -46,7 +46,7 @@ class Romi:
     return self.read_unpack(3, 3, "???")
 
   def velocity_command(self, v_x_command, v_theta_command):
-    self.write_pack(6, 'ff', v_x_command, v_x_command)
+    self.write_pack(6, 'ff', v_x_command, v_theta_command)
 
   def read_odometry(self):
     return self.read_unpack(14, 20, 'fffff')
