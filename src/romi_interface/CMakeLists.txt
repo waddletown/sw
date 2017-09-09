@@ -9,10 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+catkin_package()
 catkin_python_setup()
-
-catkin_package(
-)
 
 include_directories(
   ${catkin_INCLUDE_DIRS}
