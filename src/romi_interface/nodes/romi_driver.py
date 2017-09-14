@@ -29,6 +29,7 @@ class RomiMCBDriver(object):
         #self.romi.reset_odometry()
 
     def cmd_vel_callback(self, twist):
+        #print twist
         vx     = constrain(twist.linear.x, -1*self.max_vx, self.max_vx)
         vtheta = constrain(twist.angular.z, -1*self.max_vtheta, self.max_vtheta)
         self.romi.velocity_command(vx, vtheta)
@@ -52,7 +53,7 @@ class RomiMCBDriver(object):
             odom_msg.pose.pose.position.x     = x
             odom_msg.pose.pose.position.y     = y
             odom_msg.pose.pose.orientation.z = theta
-            odom_msg.pose.pose.orientation.w = 1-sqrt(theta)
+            odom_msg.pose.pose.orientation.w = 1-sqrt(theta**2)
             odom_msg.twist.twist.linear.x = v_x
             odom_msg.twist.twist.angular.z = v_theta
 
